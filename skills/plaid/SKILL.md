@@ -1,6 +1,7 @@
 ---
 name: plaid
-description: Plaid CLI (jverdi/plaid-cli) for linking items, listing accounts/balances, searching transactions, and monitoring for new transactions using env-var auth.
+description: plaid-cli a cli for interacting with the plaid finance platform. link accounts from various institutions, query balances, and transactions by date range listing accounts/balances.
+metadata: {"clawdis":{"emoji":"💳","requires":{"bins":["plaid-cli"]},"install":[{"id":"go","kind":"go","module":"github.com/jverdi/plaid-cli@0.0.2","bins":["plaid-cli"],"label":"Install plaid-cli (go)"}]}}
 ---
 
 # Plaid
@@ -38,10 +39,6 @@ Search transactions
 - Use `--account-id` from `accounts` output to narrow results.
 - Output formats: `json` or `csv`.
 
-Institution info
-- `plaid-cli institution <item-id-or-alias>`.
-- Flags: `--status` (include status), `--optional-metadata` (include logo/url).
-
 Monitor transactions
 - Poll a rolling window and compare transaction ids to detect new activity:
   ```bash
@@ -52,7 +49,7 @@ Monitor transactions
   if [ -f "$state" ]; then comm -13 "$state" "$next"; fi
   mv "$next" "$state"
   ```
-- Use a loop (`while true; do ...; sleep 300; done`) or cron for scheduling.
+- Use cron for scheduling.
 
 Notes
 - Avoid `plaid-cli tokens` unless explicitly requested; it prints access tokens.
@@ -61,4 +58,3 @@ Notes
 Recognize requests such as:
 - "Search transactions for Starbucks last month"
 - "Show balances for my Chase accounts"
-- "Monitor new transactions on my checking account every 10 minutes"
